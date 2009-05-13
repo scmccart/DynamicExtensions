@@ -9,5 +9,6 @@ namespace DynamicExtensions
     {
         void MixIn(object mixin, bool overwrite);
         object Send(string methodName, object[] args);
+        void Define(string methodName, Delegate method);
     }
 }

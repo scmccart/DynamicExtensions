@@ -283,6 +283,28 @@ namespace DynamicExtensions
                         else if (m_methods.ContainsKey(METHODMISSING))
                             return new ReturnMessage(m_methods[METHODMISSING](new object[] { methodName, args }), null, 0, null, call);
                     }
+                    else if (methodInfo.Name == "Define")
+                    {
+                        var methodName = call.Args.First().ToString();
+                        var methodDelegate = call.Args.Last() as Delegate;
+                        var info = methodDelegate.Method;
+                        var pTypes = info.GetParameters().Select(p => p.ParameterType);
+                        var key = MakeKey(methodName, pTypes);
+
+                        var args = Expression.Parameter(typeof(object[]), "args") ;
+                        var parameters = pTypes.Select((pt, i) => Expression.Convert(Expression.ArrayIndex(args, Expression.Constant(i)), pt)).ToArray();
+                        var body = Expression.Invoke(
+                            Expression.Constant(methodDelegate),
+                            parameters);
+                        var func = Expression.Lambda<Func<object[], object>>(body, args).Compile();
+
+                        if (m_methods.ContainsKey(key))
+                            m_methods[key] = func;
+                        else
+                            m_methods.Add(key, func);
+
+                        return new ReturnMessage(null, null, 0, null, call);
+                    }
                 }
                 else
                 {

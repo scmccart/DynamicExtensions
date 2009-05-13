@@ -21,11 +21,14 @@ namespace DynamicExtensions
         {
             var ops = target as IDynamicOps;
             if (ops != null)
+            {
                 ops.MixIn(mixin, overwrite);
+                return target;
+            }
             else
-                throw new InvalidOperationException("This is not a Dynamic!");
-
-            return target;
+            {
+                return target.Transmute().MixIn(mixin, overwrite);
+            }
         }
 
         public static object Send(this object target, string methodName, object[] args)
@@ -36,6 +39,20 @@ namespace DynamicExtensions
                 return ops.Send(methodName, args);
             else
                 throw new InvalidOperationException("This is not a Dynamic!");
+        }
+
+        public static object Define(this object target, string methodName, Delegate method) {
+            var ops = target as IDynamicOps;
+
+            if (ops != null)
+            {
+                ops.Define(methodName, method);
+                return target;
+            }
+            else
+            {
+                return target.Transmute().Define(methodName, method);
+            }
         }
     }
 }

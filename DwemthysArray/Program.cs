@@ -18,7 +18,7 @@ namespace DwemthysArray
                 Charisma = 44D,
                 Weapon = 4D,
                 bombs = 3
-            }.Transmute().MixIn(new CreatureMethods()).MixIn(new RabbitMethods()) as IRabbit;
+            }.MixIn(new CreatureMethods()).MixIn(new RabbitMethods()) as IRabbit;
 
             var IndustrialRaverMonkey = new
             {
@@ -27,7 +27,7 @@ namespace DwemthysArray
                 Strength = 35D,
                 Charisma = 91D,
                 Weapon = 2D
-            }.Transmute().MixIn(new CreatureMethods());
+            }.MixIn(new CreatureMethods());
 
             var DwarvenAngel = new
             {
@@ -36,7 +36,7 @@ namespace DwemthysArray
                 Strength = 6D,
                 Charisma = 144D,
                 Weapon = 50D
-            }.Transmute().MixIn(new CreatureMethods());
+            }.MixIn(new CreatureMethods());
 
             var AssistantViceTentacleAndOmbudsman = new
             {
@@ -45,7 +45,7 @@ namespace DwemthysArray
                 Strength = 6D,
                 Charisma = 144D,
                 Weapon = 50D
-            }.Transmute().MixIn(new CreatureMethods());
+            }.MixIn(new CreatureMethods());
 
             var TeethDeer = new
             {
@@ -54,7 +54,7 @@ namespace DwemthysArray
                 Strength = 192D,
                 Charisma = 19D,
                 Weapon = 109D
-            }.Transmute().MixIn(new CreatureMethods());
+            }.MixIn(new CreatureMethods());
 
             var IntrepidDecomposedCyclist = new
             {
@@ -63,7 +63,7 @@ namespace DwemthysArray
                 Strength = 560D,
                 Charisma = 422D,
                 Weapon = 105D
-            }.Transmute().MixIn(new CreatureMethods());
+            }.MixIn(new CreatureMethods());
 
             var Dragon = new
             {
@@ -72,7 +72,7 @@ namespace DwemthysArray
                 Strength = 451D,
                 Charisma = 1020D,
                 Weapon = 939D
-            }.Transmute().MixIn(new CreatureMethods());
+            }.MixIn(new CreatureMethods());
 
             var dwarr = new List<object>()
             {
@@ -82,7 +82,7 @@ namespace DwemthysArray
                 TeethDeer,
                 IntrepidDecomposedCyclist,
                 Dragon
-            }.Transmute().MixIn(new DwemthysArrayMethods());
+            }.MixIn(new DwemthysArrayMethods());
 
             Rabbit.Lettuce(dwarr as ICreature);
 
